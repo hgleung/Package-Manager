@@ -22,9 +22,8 @@ package_manager/
 ├── parser.py           # Parser and AST node definitions
 ├── lexer.py            # Lexer (tokenizer)
 ├── tokens.py           # Token and TokenType definitions
-├── test_interpreter.py # Interpreter test suite
-├── test_parser_features.py # Parser feature tests
-└── README.md           # This documentation
+├── tests/              # Test suite
+├── README.md           # This documentation
 ```
 
 ### Main Components
