@@ -17,11 +17,13 @@ This project implements a toy programming language with a custom lexer, parser, 
 ## Project Structure
 
 ```
-package_manager/
+toy_lang/
 ├── interpreter.py      # Interpreter and runtime environment
 ├── parser.py           # Parser and AST node definitions
 ├── lexer.py            # Lexer (tokenizer)
 ├── tokens.py           # Token and TokenType definitions
+├── codegen.py          # LLVM IR code generation from AST
+├── main.py             # CLI entry point for codegen
 ├── tests/              # Test suite
 ├── README.md           # This documentation
 ```
@@ -31,6 +33,8 @@ package_manager/
 - **tokens.py:** Defines the `Token` class and `TokenType` enum for all language symbols.
 - **parser.py:** Converts tokens into an Abstract Syntax Tree (AST). Defines all AST node classes (e.g., `VarDecl`, `Assignment`, `PrintStmt`, `IfStmt`, `WhileStmt`, `FunctionDecl`, `Call`, `ReturnStmt`, `ExpressionStmt`, `Block`, `StatementList`, `Variable`, `Literal`, `Binary`, `Unary`, `Grouping`).
 - **interpreter.py:** Walks the AST and executes code. Handles variable scope, function calls, control flow, and built-in functions.
+- **codegen.py:** Generates LLVM IR code from the AST using [llvmlite](https://github.com/numba/llvmlite). The `CodeGenerator` class traverses the AST and emits LLVM IR, enabling compilation or further optimization.
+- **main.py:** Command-line entry point. Reads a source file, runs the lexer and parser, generates LLVM IR using `CodeGenerator`, and prints the resulting IR to stdout.
 - **test_interpreter.py:** Runs a battery of tests to validate interpreter correctness and language features.
 - **test_parser_features.py:** Tests parser's AST output and error handling.
 
