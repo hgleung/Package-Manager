@@ -1,0 +1,15 @@
+# Core dependencies
+python-sat>=0.1.8.dev6  # CDCL SAT solver implementation
+networkx>=3.0           # For graph operations
+click>=8.1.3           # For CLI interface
+rich>=13.4.2           # For beautiful console output
+orjson>=3.9.0          # Fast JSON parsing
+python-dotenv>=1.0.0   # For configuration
+
+# Development dependencies
+pytest>=7.4.0
+pytest-cov>=4.1.0
+mypy>=1.4.1
+black>=23.3.0
+isort>=5.12.0
+flake8>=6.0.0
