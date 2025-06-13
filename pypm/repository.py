@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 import logging
 
-from .package import Package, PackageGraph
+from .package import Package, PackageGraph, Version
 
 logger = logging.getLogger(__name__)
 

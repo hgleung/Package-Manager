@@ -1,4 +1,4 @@
-from typing import Dict, List, Set
+from typing import Dict, List, Set, Tuple
 import concurrent.futures
 from pysat.solvers import Solver as PySATSolver
 from pysat.formula import CNF
@@ -149,14 +149,18 @@ class Solver:
             # Solve the CNF formula
             logger.debug(f"Solving CNF with {len(self._cnf.clauses)} clauses and {self._next_var} variables")
             
+            # Add all CNF clauses to the solver
+            for clause in self._cnf.clauses:
+                self._solver.add_clause(clause)
+
             # Use parallel solving if multiple workers are available
             if self.max_workers > 1:
                 with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-                    future = executor.submit(self._solver.solve, self._cnf)
+                    future = executor.submit(self._solver.solve)
                     if not future.result():
                         raise ResolutionError("No solution found for the given constraints")
             else:
-                if not self._solver.solve(self._cnf):
+                if not self._solver.solve():
                     raise ResolutionError("No solution found for the given constraints")
             
             # Extract and prune the solution

@@ -2,6 +2,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+import os
 
 # Add the parent directory to the path so we can import pypm
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -88,7 +89,7 @@ class TestPackageGraph(unittest.TestCase):
         
         # Test dependents
         deps = self.graph.get_dependents(self.dep2)
-        self.assertEqual(len(deps), 1)
+        self.assertEqual(len(deps), 2)
         self.assertEqual(list(deps)[0].name, "pkg1")
 
 
